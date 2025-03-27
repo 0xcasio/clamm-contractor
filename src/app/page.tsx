@@ -99,30 +99,6 @@ export default function Home() {
           </div>
         </div>
       </div>
-      
-      <div className="mt-8 p-6 border rounded-lg bg-gray-50 shadow-sm">
-        <h2 className="text-2xl font-semibold mb-4">About Stryke CLAMM</h2>
-        <p className="mb-4 text-gray-700">
-          Stryke CLAMM (Concentrated Liquidity Automated Market Maker) is a DeFi options protocol built on top of Uniswap V3 that enables the creation and trading of on-chain options.
-        </p>
-        <p className="mb-4 text-gray-700">
-          The protocol uses liquidity from Uniswap V3 style AMMs to create options markets, allowing traders to buy CALL and PUT options that can be exercised at any time when in-the-money. Liquidity providers can supply concentrated liquidity to earn fees from option premiums.
-        </p>
-        <p className="text-gray-700">
-          This dashboard allows for seamless deployment and management of the Stryke CLAMM contracts, providing an intuitive interface for interacting with the full suite of contracts in the ecosystem.
-        </p>
-        <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-lg text-blue-800 text-sm">
-          <strong>Note:</strong> For technical documentation and detailed information about the contracts, please visit the{" "}
-          <a 
-            href="https://github.com/stryke-xyz/clamm" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="text-blue-600 hover:underline"
-          >
-            Stryke CLAMM GitHub repository
-          </a>.
-        </div>
-      </div>
     </div>
   );
 }

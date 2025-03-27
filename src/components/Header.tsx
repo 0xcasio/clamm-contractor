@@ -9,7 +9,7 @@ export default function Header() {
       <div className="container mx-auto px-4 py-4">
         <div className="flex justify-between items-center">
           <div className="flex items-center gap-4">
-            <Link href="/" className="text-xl font-bold">CLAMM Dashboard</Link>
+            <Link href="/" className="text-xl font-bold">Clamm Contractor</Link>
             
             <nav className="hidden md:flex ml-8">
               <ul className="flex gap-6">
