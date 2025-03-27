@@ -15,19 +15,19 @@ export default function Header() {
   };
   
   return (
-    <header className="border-b border-gray-200 bg-white">
+    <header className="border-b border-[#E2E8F0] bg-white shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo and Navigation */}
           <div className="flex items-center">
-            <Link href="/" className="flex-shrink-0 font-bold text-lg">
+            <Link href="/" className="flex-shrink-0 font-bold text-lg text-[#4F46E5]">
               Stryke CLAMM Dashboard
             </Link>
             <nav className="ml-8 hidden md:flex space-x-4">
               <Link 
                 href="/" 
                 className={`px-3 py-2 rounded-md text-sm font-medium ${
-                  isActive('/') ? 'bg-blue-100 text-blue-700' : 'text-gray-600 hover:bg-gray-100'
+                  isActive('/') ? 'bg-[#F1F5F9] text-[#4F46E5]' : 'text-[#334155] hover:bg-[#F1F5F9]'
                 }`}
               >
                 Home
@@ -35,7 +35,7 @@ export default function Header() {
               <Link 
                 href="/deploy" 
                 className={`px-3 py-2 rounded-md text-sm font-medium ${
-                  isActive('/deploy') ? 'bg-blue-100 text-blue-700' : 'text-gray-600 hover:bg-gray-100'
+                  isActive('/deploy') ? 'bg-[#F1F5F9] text-[#4F46E5]' : 'text-[#334155] hover:bg-[#F1F5F9]'
                 }`}
               >
                 Deploy
@@ -43,7 +43,7 @@ export default function Header() {
               <Link 
                 href="/modify" 
                 className={`px-3 py-2 rounded-md text-sm font-medium ${
-                  isActive('/modify') ? 'bg-blue-100 text-blue-700' : 'text-gray-600 hover:bg-gray-100'
+                  isActive('/modify') ? 'bg-[#F1F5F9] text-[#4F46E5]' : 'text-[#334155] hover:bg-[#F1F5F9]'
                 }`}
               >
                 Modify
@@ -55,7 +55,7 @@ export default function Header() {
           <div className="flex items-center space-x-3">
             <NetworkSelector />
             
-            <button className="flex items-center space-x-2 px-3 py-2 rounded-md border border-gray-200 bg-white hover:bg-gray-50 text-sm font-medium text-gray-600">
+            <button className="flex items-center space-x-2 px-3 py-2 rounded-md border border-[#E2E8F0] bg-white hover:bg-[#F1F5F9] text-sm font-medium text-[#4F46E5]">
               <Wallet size={16} />
               <span className="hidden sm:inline">Connect Wallet</span>
             </button>
@@ -64,11 +64,11 @@ export default function Header() {
       </div>
       
       {/* Mobile Navigation */}
-      <div className="md:hidden border-t border-gray-200 flex">
+      <div className="md:hidden border-t border-[#E2E8F0] flex">
         <Link 
           href="/" 
           className={`flex-1 text-center py-3 text-sm font-medium ${
-            isActive('/') ? 'text-blue-700 border-b-2 border-blue-500' : 'text-gray-600'
+            isActive('/') ? 'text-[#4F46E5] border-b-2 border-[#4F46E5]' : 'text-[#334155]'
           }`}
         >
           Home
@@ -76,7 +76,7 @@ export default function Header() {
         <Link 
           href="/deploy" 
           className={`flex-1 text-center py-3 text-sm font-medium ${
-            isActive('/deploy') ? 'text-blue-700 border-b-2 border-blue-500' : 'text-gray-600'
+            isActive('/deploy') ? 'text-[#4F46E5] border-b-2 border-[#4F46E5]' : 'text-[#334155]'
           }`}
         >
           Deploy
@@ -84,7 +84,7 @@ export default function Header() {
         <Link 
           href="/modify" 
           className={`flex-1 text-center py-3 text-sm font-medium ${
-            isActive('/modify') ? 'text-blue-700 border-b-2 border-blue-500' : 'text-gray-600'
+            isActive('/modify') ? 'text-[#4F46E5] border-b-2 border-[#4F46E5]' : 'text-[#334155]'
           }`}
         >
           Modify
