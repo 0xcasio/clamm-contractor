@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   TOKEN_PAIRS, 
   TTL_OPTIONS, 
@@ -9,8 +9,12 @@ import {
   OPTION_PRICING_PARAMS,
   TICK_RANGES
 } from '@/contracts';
+import { useNetwork } from '@/contexts/NetworkContext';
 
 export default function DeployPage() {
+  // Get network context
+  const { selectedNetwork } = useNetwork();
+  
   // Contract selection state
   const [selectedContract, setSelectedContract] = useState('OptionMarket');
   
@@ -18,7 +22,6 @@ export default function DeployPage() {
   const [formState, setFormState] = useState({
     // General
     deploymentName: '',
-    network: 'Ethereum',
     
     // OptionMarket params
     positionManager: OPTION_MARKET_PARAMS.positionManager,
@@ -41,6 +44,16 @@ export default function DeployPage() {
     // AutoExercise params
     autoExerciseFee: '0.05', // Default 0.05 ETH
   });
+
+  // Update deployment name when network changes
+  useEffect(() => {
+    if (formState.deploymentName === '') {
+      setFormState(prev => ({
+        ...prev,
+        deploymentName: `${TOKEN_PAIRS[0].name} on ${selectedNetwork.name}`
+      }));
+    }
+  }, [selectedNetwork, formState.deploymentName]);
   
   // Handle form changes
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -55,7 +68,9 @@ export default function DeployPage() {
           tokenPair: value,
           callAsset: selectedPair.callAsset,
           putAsset: selectedPair.putAsset,
-          primePool: selectedPair.pool
+          primePool: selectedPair.pool,
+          // Update deployment name with new token pair
+          deploymentName: `${value} on ${selectedNetwork.name}`
         });
       }
       return;
@@ -74,9 +89,9 @@ export default function DeployPage() {
   
   // Handle deploy button click
   const handleDeploy = () => {
-    console.log(`Deploying ${selectedContract} with params:`, formState);
+    console.log(`Deploying ${selectedContract} on ${selectedNetwork.name} (Chain ID: ${selectedNetwork.chainId}) with params:`, formState);
     // Here we would actually call a function to deploy the contract
-    alert(`Deploy data logged to console. In a real app, this would deploy the ${selectedContract} contract.`);
+    alert(`Deploy data logged to console. In a real app, this would deploy the ${selectedContract} contract on ${selectedNetwork.name}.`);
   };
 
   // Render parameters based on selected contract
@@ -307,17 +322,12 @@ export default function DeployPage() {
             
             <div>
               <label className="block text-sm font-medium mb-1">Network</label>
-              <select 
-                name="network" 
-                value={formState.network}
-                onChange={handleInputChange}
-                className="w-full p-2 border rounded"
-              >
-                <option value="Ethereum">Ethereum</option>
-                <option value="Polygon">Polygon</option>
-                <option value="Arbitrum">Arbitrum</option>
-                <option value="Goerli">Goerli (Testnet)</option>
-              </select>
+              <div className="p-2 bg-gray-100 rounded flex items-center space-x-2">
+                <div className="w-3 h-3 rounded-full bg-green-500"></div>
+                <span className="font-medium">{selectedNetwork.name}</span>
+                <span className="text-xs text-gray-500">Chain ID: {selectedNetwork.chainId}</span>
+              </div>
+              <p className="mt-1 text-xs text-gray-500">To change the network, use the network selector in the header.</p>
             </div>
             
             <div className="border-t pt-4 mt-4">
@@ -331,7 +341,7 @@ export default function DeployPage() {
               onClick={handleDeploy}
               className="w-full px-4 py-3 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
             >
-              Deploy {selectedContract}
+              Deploy {selectedContract} on {selectedNetwork.name}
             </button>
           </div>
         </div>
